@@ -12,8 +12,8 @@ env:
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: OutBody-Server
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build-and-deploy:
+    runs-on: ubuntu-22.04.2
 
   strategy:
       matrix:
