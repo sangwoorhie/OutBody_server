@@ -27,6 +27,14 @@ export class AuthService {
       throw new NotFoundException('존재하지 않는 회원입니다');
     }
 
+    if (
+      user.status === 'admin' &&
+      email === user.email &&
+      password === user.password
+    ) {
+      return user;
+    }
+
     const comparedPassword = await compare(password, user.password);
     if (!comparedPassword) {
       throw new NotAcceptableException('비밀번호가 일치하지 않습니다.');
@@ -35,6 +43,7 @@ export class AuthService {
     if (user && comparedPassword) {
       return user;
     }
+    return null;
   }
 
   // 로그인 (access토큰 발급)
